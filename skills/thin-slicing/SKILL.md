@@ -9,7 +9,7 @@ description: >
   build or how to sequence work.
 ---
 
-# Thin Slicer
+# Thin Slicing
 
 Decompose a product specification into thin, vertical, valuable slices — independently shippable, end-to-end
 increments that satisfy a strict 7-criterion definition.
@@ -17,6 +17,25 @@ increments that satisfy a strict 7-criterion definition.
 **Reference files** (load when indicated):
 - `references/slice-definition.md` — full criterion definitions, tests, and failure modes. Load before Phase 3.
 - `references/output-templates.md` — slice file and overview file templates. Load before Phase 4.
+
+## When NOT to use
+
+- Pure technical refactors with no named user-facing capability (no user role, no deliverable outcome)
+- Documents describing capabilities already live in production with no new work being requested
+- A spec already at single-slice granularity: one user, one trigger, one outcome, one execution path
+- Bug reports, ADRs, investigation briefs, or post-mortems — no new capability is being specified
+
+## Run checklist
+
+Copy and track your progress:
+
+- [ ] Phase 0 — Re-run check (skip if no existing slices provided)
+- [ ] Phase 1 — Input elicitation complete
+- [ ] Phase 2 — Slicing approach defined
+- [ ] Phase 3 Pass 1 — Intent + Desirability
+- [ ] Phase 3 Pass 2 — Thin + Vertical + Independence
+- [ ] Phase 3 Pass 3 — Value + Completeness
+- [ ] Phase 4 — Output written
 
 ---
 
