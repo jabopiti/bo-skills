@@ -1,13 +1,12 @@
 ---
-name: thin-slicer
+name: thin-slicing
 description: >
-  Slice any product specification into thin, vertical, valuable slices according to a strict concept definition.
   Use when a user provides a PRD, epic, feature description, service blueprint, user story map, opportunity brief,
-  RFC, jobs-to-be-done output, or any structured expression of product intent — and wants it broken into
-  independently shippable, end-to-end slices. Trigger on phrases like "slice this spec", "break this into slices",
-  "vertical slices", "what should we build first", "turn this PRD into stories", or any request to decompose
-  a product document into deliverable increments. Also trigger when a user pastes a product document and asks
-  what to build or how to sequence work.
+  RFC, jobs-to-be-done output, or any structured expression of product intent — and asks how to decompose or
+  sequence it into deliverable increments. Trigger on phrases like "slice this spec", "break this into slices",
+  "vertical slices", "what should we build first", "turn this PRD into stories", or any request to break a
+  product document into shippable work. Also trigger when a user pastes a product document and asks what to
+  build or how to sequence work.
 ---
 
 # Thin Slicer
