@@ -8,8 +8,8 @@
     {
       "name": "bo-skills",
       "source": "./",
-      "description": "Shareable Claude skills — tracking-issues, thin-slicing, and more",
-      "version": "1.0.1"
+      "description": "Shareable Claude skills — track-issues, thin-slicing, farn-styling, and more",
+      "version": "1.0.2"
     }
   ]
 }

@@ -1,5 +1,5 @@
 ---
-name: styling-with-farn
+name: farn-styling
 description: Apply the Farn design system's colors and typography to any visual output. Use when explicitly requested — do not auto-trigger.
 allowed-tools: Read Write Edit AskUserQuestion
 ---

@@ -1,7 +1,7 @@
 {
   "name": "bo-skills",
-  "version": "1.0.1",
-  "description": "Shareable Claude skills by Jacob Lueg Tiedemann — tracking-issues (GitHub issue workflow), thin-slicing (product decomposition), and more.",
+  "version": "1.0.2",
+  "description": "Shareable Claude skills by Jacob Lueg Tiedemann — track-issues (GitHub issue workflow), thin-slicing (product decomposition), farn-styling (design system), and more.",
   "author": {
     "name": "Jacob Lueg Tiedemann",
     "url": "https://jbpt.de"
