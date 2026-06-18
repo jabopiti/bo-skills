@@ -175,6 +175,13 @@ Record this approach in the overview iteration log, then proceed immediately to 
 
 Load `references/slice-definition.md` now.
 
+**Token discipline for this phase:**
+- Phase 2 approach summary: one sentence per capability. No full slice content.
+- Within passes: one sentence per finding per slice. Do not restate criterion definitions inline.
+- Do not repeat the slicing approach in the overview beyond the iteration log entry.
+
+> **Parallelism:** Within each pass, slices are independent of each other — evaluate them simultaneously. Collect all pass results before proceeding to the next pass.
+
 Run three passes over the full slice set. **Remediation limit: 2 rewrites per slice per pass.** If a slice still fails after 2 rewrites, accept the failure, flag the slice, and continue. Flagging is a last resort — the iteration log must show what was attempted.
 
 ---
@@ -225,7 +232,8 @@ For each slice:
    - Run a dependency sort: identify any internal dependencies between slices in the batch.
    - Order so no slice depends on an unprocessed slice in the same batch.
    - Add to the working slice set in sorted order.
-   - Re-enter each from Pass 1. Subject to all passes and all remediation limits.
+   - **Pause Pass 2 on remaining original slices.** Complete Pass 1 and Pass 2 for all prerequisite slices before continuing Pass 2 on any remaining original slices. Do not interleave original slices with prerequisites mid-pass.
+   - Subject to all passes and all remediation limits.
 
 **Remediation limit:** 2 restructures per slice (thinning or splitting each count as one restructure).
 
@@ -308,11 +316,6 @@ If any flagged — name the criterion and one-sentence reason before the user op
 | Missing prerequisite | Create prerequisite slice; sort into dependency chain |
 | Open TBDs in acceptance criteria | Resolve from available inputs; flag only if truly unresolvable |
 
+**Flags are additive.** A slice flagged in Pass 1 still proceeds through Pass 2 and Pass 3 — each pass evaluates different criteria independently. A flag does not end evaluation for that slice.
+
 ---
-
-## Token discipline
-
-- Load reference files only when the phase requires them.
-- Phase 2 summary: one sentence per capability, no full slice content.
-- Do not restate the criterion list inside slice files — the definition lives in the reference file.
-- Do not repeat the slicing approach in the overview beyond the iteration log entry.
