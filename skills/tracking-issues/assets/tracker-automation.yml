@@ -1,0 +1,67 @@
+name: Issue Tracker Automation
+on:
+  pull_request:
+    types: [opened, reopened, closed]
+
+jobs:
+  sync-issue-status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync issue status with PR lifecycle
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          CONFIG=$(cat .claude/issue-config.json)
+          PROJECT_ID=$(echo "$CONFIG" | jq -r '.project_id')
+          PROJECT_NUMBER=$(echo "$CONFIG" | jq -r '.project_number')
+          OWNER=$(echo "$CONFIG" | jq -r '.owner')
+          STATUS_FIELD_ID=$(echo "$CONFIG" | jq -r '.fields.Status.id')
+          ACTION="${{ github.event.action }}"
+          MERGED="${{ github.event.pull_request.merged }}"
+
+          if [[ "$ACTION" == "opened" || "$ACTION" == "reopened" ]]; then
+            TARGET_OPTION_ID=$(echo "$CONFIG" | jq -r '.fields.Status.options["In review"]')
+            TARGET_LABEL="In review"
+          elif [[ "$ACTION" == "closed" && "$MERGED" == "true" ]]; then
+            TARGET_OPTION_ID=$(echo "$CONFIG" | jq -r '.fields.Status.options.Done')
+            TARGET_LABEL="Done"
+          else
+            echo "PR closed without merge — no status change"
+            exit 0
+          fi
+
+          PR_BODY=$(gh pr view "${{ github.event.pull_request.number }}" \
+            --repo "${{ github.repository }}" --json body -q .body)
+
+          ISSUE_NUMBERS=$(echo "$PR_BODY" \
+            | grep -oiE '(closes|fixes|resolves)[[:space:]]+#[0-9]+' \
+            | grep -oE '[0-9]+' || true)
+
+          if [[ -z "$ISSUE_NUMBERS" ]]; then
+            echo "No linked issues found in PR body"
+            exit 0
+          fi
+
+          for ISSUE_NUM in $ISSUE_NUMBERS; do
+            ISSUE_URL="https://github.com/${{ github.repository }}/issues/$ISSUE_NUM"
+            ITEM_ID=$(gh project item-list "$PROJECT_NUMBER" --owner "$OWNER" \
+              --limit 500 --format json \
+              | jq -r --arg url "$ISSUE_URL" '.items[] | select(.content.url==$url) | .id')
+
+            if [[ -z "$ITEM_ID" ]]; then
+              echo "Issue #$ISSUE_NUM not on project board — skipping"
+              continue
+            fi
+
+            gh project item-edit \
+              --project-id "$PROJECT_ID" \
+              --id "$ITEM_ID" \
+              --field-id "$STATUS_FIELD_ID" \
+              --single-select-option-id "$TARGET_OPTION_ID"
+
+            echo "Issue #$ISSUE_NUM → $TARGET_LABEL"
+          done
