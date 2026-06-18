@@ -132,43 +132,7 @@ EOF
 
 ---
 
-## Step 6 — Configure workflow automations (recommended)
-
-Automates two status transitions so the board stays accurate without manual `gh project item-edit` calls:
-
-- **PR opened or reopened** → linked issues move to **In review**
-- **PR merged** → linked issues move to **Done**
-
-Linked issues are detected from `Closes #N`, `Fixes #N`, or `Resolves #N` in the PR body. Issues not on the board are silently skipped. Closing a PR without merging makes no status change.
-
-> The standard `GITHUB_TOKEN` in Actions doesn't include project write access — a Personal Access Token is required.
-
-**a. Create a PAT with `repo` + `project` scopes**
-
-GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token. Grant **`repo`** and **`project`** scopes.
-
-**b. Store it as a repo secret named `PROJECT_TOKEN`**
-
-```bash
-gh secret set PROJECT_TOKEN --repo $REPO
-# Paste the PAT value when prompted
-```
-
-**c. Copy the automation workflow**
-
-```bash
-mkdir -p .github/workflows
-
-# Copy from skill bundle — adjust path to match your tracker skill install location
-SKILL_DIR=$(dirname "$0")/..
-cp "$SKILL_DIR/assets/tracker-automation.yml" .github/workflows/tracker-automation.yml
-```
-
-If the skill bundle path isn't available, copy [`tracker-automation.yml`](../assets/tracker-automation.yml) manually to `.github/workflows/tracker-automation.yml`.
-
----
-
-## Step 7 — Add the tracker trigger to CLAUDE.md
+## Step 6 — Add the tracker trigger to CLAUDE.md
 
 Add this line to the repo's `CLAUDE.md` (create the file if it doesn't exist):
 
@@ -178,11 +142,10 @@ When creating, picking up, or closing a GitHub issue, or when documenting discov
 
 ---
 
-## Step 8 — Commit and verify
+## Step 7 — Commit and verify
 
 ```bash
-git add .github/ISSUE_TEMPLATE/task-template.yml .github/workflows/tracker-automation.yml \
-  .claude/issue-config.json CLAUDE.md
+git add .github/ISSUE_TEMPLATE/task-template.yml .claude/issue-config.json CLAUDE.md
 git commit -m "chore: set up Bo. issue workflow (tracker skill)"
 ```
 
