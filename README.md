@@ -8,7 +8,7 @@ Skills extend Claude Code with domain-specific workflows and knowledge — loade
 
 ## Skills
 
-### issue-tracker
+### tracking-issues
 **GitHub issue lifecycle manager**
 
 Handles the full workflow for GitHub Issues backed by a project kanban board: filing new issues, picking them up, tracking status through Backlog → Ready → In progress → In review → Done, and closing them. Reads board configuration from a small JSON file in the repo — no hardcoded IDs, works with any repo you set it up in.
@@ -17,29 +17,29 @@ Includes a first-run **setup mode** that creates the GitHub Project board, adds 
 
 **Triggers:** "file an issue for this", "pick up issue #N", "log this for later", "what issues are open", "track this", "document this gap"
 
-→ [`skills/issue-tracker/`](skills/issue-tracker/)
+→ [`skills/tracking-issues/`](skills/tracking-issues/)
 
 ---
 
-### thin-slicer
+### thin-slicing
 **Product decomposition skill**
 
 Breaks any product specification — PRD, epic, feature brief, RFC — into thin, vertical, independently shippable slices. Applies a strict 7-criterion definition of "thin" to prevent scope creep and keep each slice genuinely deliverable on its own.
 
 **Triggers:** "slice this spec", "break this into thin slices", "decompose this feature", "make this vertical"
 
-→ [`skills/thin-slicer/`](skills/thin-slicer/)
+→ [`skills/thin-slicing/`](skills/thin-slicing/)
 
 ---
 
-### farn-painter
+### styling-with-farn
 **Farn design system — colors and typography**
 
 Applies the [Farn design system's](https://farn.jbpt.de) color palette and typefaces to any HTML/CSS artifact, slide, prototype, or visual output. Covers both light and dark mode accents, the full type scale (Fraunces · Instrument Sans · JetBrains Mono), and a ready-to-paste CSS snippet.
 
 **Triggers:** "apply farn styling", "use farn colors", "style this with the farn design system"
 
-→ [`skills/farn-painter/`](skills/farn-painter/)
+→ [`skills/styling-with-farn/`](skills/styling-with-farn/)
 
 ---
 
@@ -65,21 +65,21 @@ Claude will write the plugin entry and populate the local cache.
 
 **Step 3 — Restart Claude Code**
 
-Skills are loaded at startup. After restarting, they appear in the available skills list as `bo-skills:issue-tracker`, `bo-skills:thin-slicer`, and `bo-skills:farn-painter`.
+Skills are loaded at startup. After restarting, they appear in the available skills list as `bo-skills:tracking-issues`, `bo-skills:thin-slicing`, and `bo-skills:styling-with-farn`.
 
 **On a new machine** — repeat steps 1–3. The marketplace and cache are local-only; everything else is in this repo.
 
 ---
 
-## Setting up issue-tracker in a new repo
+## Setting up tracking-issues in a new repo
 
-The issue-tracker skill detects whether a repo is configured and walks you through setup if not. In any repo without `.claude/issue-config.json`:
+The tracking-issues skill detects whether a repo is configured and walks you through setup if not. In any repo without `.claude/issue-config.json`:
 
-1. Invoke the `issue-tracker` skill (or ask Claude to "set up issue management for this repo")
+1. Invoke the `tracking-issues` skill (or ask Claude to "set up issue management for this repo")
 2. It reads the setup reference and runs the full setup: creates the GitHub Project board, adds Status / Complexity / Risk fields with standard options, copies the issue template, and writes `.claude/issue-config.json`
-3. Done — all future `issue-tracker` invocations in that repo read from the config file directly
+3. Done — all future `tracking-issues` invocations in that repo read from the config file directly
 
-The issue template is at [`skills/issue-tracker/assets/task-template.yml`](skills/issue-tracker/assets/task-template.yml) and is copied to `.github/ISSUE_TEMPLATE/` during setup.
+The issue template is at [`skills/tracking-issues/assets/task-template.yml`](skills/tracking-issues/assets/task-template.yml) and is copied to `.github/ISSUE_TEMPLATE/` during setup.
 
 ---
 

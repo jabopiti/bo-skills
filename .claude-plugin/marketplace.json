@@ -8,7 +8,7 @@
     {
       "name": "bo-skills",
       "source": "./",
-      "description": "Shareable Claude skills — issue-tracker, thin-slicer, and more",
+      "description": "Shareable Claude skills — tracking-issues, thin-slicing, and more",
       "version": "1.0.0"
     }
   ]
