@@ -1,5 +1,12 @@
 # Output Templates
 
+## Contents
+
+- [Template A — Individual Slice File](#template-a--individual-slice-file)
+- [Template B — Overview File](#template-b--overview-file)
+
+---
+
 ## Template A — Individual Slice File
 
 File naming: `slice-{NNN}-{kebab-case-title}.md`

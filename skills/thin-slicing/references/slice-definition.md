@@ -1,5 +1,18 @@
 # Slice Definition — Full Reference
 
+## Contents
+
+- [Criterion 1 — Intent](#criterion-1--intent)
+- [Criterion 2 — Thin](#criterion-2--thin)
+- [Criterion 3 — Vertical](#criterion-3--vertical)
+- [Criterion 4 — Valuable](#criterion-4--valuable)
+- [Criterion 5 — Independent](#criterion-5--independent)
+- [Criterion 6 — Complete (specification)](#criterion-6--complete-specification)
+- [Criterion 7 — Complete (delivery)](#criterion-7--complete-delivery)
+- [Failure modes to watch](#failure-modes-to-watch)
+
+---
+
 A **thin, vertical, valuable slice** is the smallest unit of working software a real user can interact with, that solves a specific problem end-to-end, and can be shipped independently.
 
 A slice is valid only if it satisfies **all** criteria below. Failing any single criterion makes it invalid.
