@@ -55,7 +55,27 @@ Build the current dependency graph from the remaining slices.
 
 ### Step 0.2 — Detect mode
 
-Analyse the new input against the current slice set. Determine:
+Analyse the new input against the current slice set using the decision tree below, then state the detected mode and reasoning before proceeding.
+
+```dot
+digraph mode_detection {
+  rankdir=TB;
+  "Existing slices provided?" [shape=diamond];
+  "Skip Phase 0 → proceed to Phase 1" [shape=box];
+  "Input adds capabilities\nnot in any current slice?" [shape=diamond];
+  "Input revises/corrects\nan existing covered slice?" [shape=diamond];
+  "Mode A — Extend" [shape=box];
+  "Mode B — Revise" [shape=box];
+  "Mode Mixed — B first, then A" [shape=box];
+
+  "Existing slices provided?" -> "Skip Phase 0 → proceed to Phase 1" [label="no"];
+  "Existing slices provided?" -> "Input adds capabilities\nnot in any current slice?" [label="yes"];
+  "Input adds capabilities\nnot in any current slice?" -> "Input revises/corrects\nan existing covered slice?" [label="yes"];
+  "Input adds capabilities\nnot in any current slice?" -> "Mode B — Revise" [label="no"];
+  "Input revises/corrects\nan existing covered slice?" -> "Mode Mixed — B first, then A" [label="yes"];
+  "Input revises/corrects\nan existing covered slice?" -> "Mode A — Extend" [label="no"];
+}
+```
 
 **Mode A — Extend:** New input describes capabilities not covered by any current slice.
 Indicators: new user roles, new capability units, new system areas, explicit "add this feature" framing.
@@ -63,9 +83,7 @@ Indicators: new user roles, new capability units, new system areas, explicit "ad
 **Mode B — Revise:** New input changes, corrects, or removes something already covered by a current slice.
 Indicators: changed requirements, updated scope, role renamed, friction redefined, explicit "change this" framing.
 
-**Mixed:** New input contains both. Run Mode B first, then Mode A on the same pass — revisions must be stable before new slices are added to the dependency chain.
-
-State the detected mode and the reasoning before proceeding.
+**Mixed:** New input contains both. Run Mode B first, then Mode A — revisions must be stable before new slices are added to the dependency chain.
 
 ### Step 0.3 — Mode A: Extend
 
