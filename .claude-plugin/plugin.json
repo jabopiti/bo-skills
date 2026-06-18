@@ -1,0 +1,11 @@
+{
+  "name": "jabopiti-skills",
+  "version": "1.0.0",
+  "description": "Shareable Claude skills by Jacob Lueg Tiedemann — tracker (GitHub issue workflow), thin-slicer (product decomposition), and more.",
+  "author": {
+    "name": "Jacob Lueg Tiedemann",
+    "url": "https://jbpt.de"
+  },
+  "repository": "https://github.com/jabopiti/claude-skills",
+  "license": "MIT"
+}
