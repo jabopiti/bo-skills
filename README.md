@@ -43,23 +43,31 @@ Applies the [Farn design system's](https://farn.jbpt.de) color palette and typef
 
 ---
 
-## Installation via Claude Code marketplace
+## Installation
 
-This repo is registered as a Claude Code marketplace. Add it once and all skills auto-update.
+This repo is a Claude Code marketplace. Install it once — skills auto-update from GitHub whenever Claude Code refreshes.
 
-In any Claude Code session, ask Claude to add the marketplace:
+**Step 1 — Add the marketplace**
 
-```
-Add the marketplace jabopiti/bo-skills
-```
+Open any Claude Code session and ask:
 
-Then install the plugin:
+> Add the marketplace `jabopiti/bo-skills`
 
-```
-Install plugin bo-skills from bo-skills marketplace
-```
+Claude will clone the repo and register it as the `bo-skills` marketplace.
 
-After restarting Claude Code, skills appear as `bo-skills:issue-tracker`, `bo-skills:thin-slicer`, etc.
+**Step 2 — Install the plugin**
+
+In the same session, ask:
+
+> Install the `bo-skills` plugin from the `bo-skills` marketplace
+
+Claude will write the plugin entry and populate the local cache.
+
+**Step 3 — Restart Claude Code**
+
+Skills are loaded at startup. After restarting, they appear in the available skills list as `bo-skills:issue-tracker`, `bo-skills:thin-slicer`, and `bo-skills:farn-painter`.
+
+**On a new machine** — repeat steps 1–3. The marketplace and cache are local-only; everything else is in this repo.
 
 ---
 
