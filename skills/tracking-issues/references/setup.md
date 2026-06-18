@@ -132,7 +132,28 @@ EOF
 
 ---
 
-## Step 6 — Add the tracker trigger to CLAUDE.md
+## Step 6 — Configure project workflows (manual, ~2 minutes)
+
+> **GitHub's GraphQL API does not expose workflow configuration** — enabling and editing workflows can only be done through the web UI.
+
+Open the project on github.com → click **Workflows** in the top-right menu. Enable and configure each workflow below. For each one: click it in the sidebar, toggle it **On**, click **Edit**, set the value shown, then **Save**.
+
+| Workflow | Configure |
+|----------|-----------|
+| Auto-add sub-issues to project | *(no configuration needed — enable as-is)* |
+| Auto-add to project | Filter: `is:issue is:open` scoped to **this repo** |
+| Auto-close issue | Trigger: Status = **Done** → action: Close the issue |
+| Item added to project | Set Status: **Backlog** |
+| Item closed | Set Status: **Done** |
+| Item reopened | Set Status: **Ready** |
+| Pull request linked to issue | Set Status: **In review** |
+| Pull request merged | Set Status: **Done** |
+
+These workflows automate the full status lifecycle — new issues land in Backlog, get moved to In review when a PR is linked, and reach Done (with the issue auto-closed) when the PR merges. Reopening an issue sends it back to Ready rather than Backlog.
+
+---
+
+## Step 7 — Add the tracker trigger to CLAUDE.md
 
 Add this line to the repo's `CLAUDE.md` (create the file if it doesn't exist):
 
@@ -142,7 +163,7 @@ When creating, picking up, or closing a GitHub issue, or when documenting discov
 
 ---
 
-## Step 7 — Commit and verify
+## Step 8 — Commit and verify
 
 ```bash
 git add .github/ISSUE_TEMPLATE/task-template.yml .claude/issue-config.json CLAUDE.md

@@ -1,6 +1,6 @@
 {
   "name": "bo-skills",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shareable Claude skills by Jacob Lueg Tiedemann — tracking-issues (GitHub issue workflow), thin-slicing (product decomposition), and more.",
   "author": {
     "name": "Jacob Lueg Tiedemann",
