@@ -19,6 +19,10 @@ Includes a first-run **setup mode** that creates the GitHub Project board, adds 
 
 → [`skills/tracker/`](skills/tracker/)
 
+```bash
+npx skills add https://github.com/jabopiti/claude-skills/raw/main/skills/tracker.skill
+```
+
 ---
 
 ### thin-slicer
@@ -30,10 +34,24 @@ Breaks any product specification — PRD, epic, feature brief, RFC — into thin
 
 → [`skills/thin-slicer/`](skills/thin-slicer/)
 
+```bash
+npx skills add https://github.com/jabopiti/claude-skills/raw/main/skills/thin-slicer.skill
+```
+
 ---
 
-### bo-brander *(in progress → farn-design-system)*
-Visual brand skill. Currently specific to Bo.'s design system — being reworked as a generic, reusable design system skill (`farn-design-system`). Not ready for general use yet.
+### farn-painter
+**Farn design system — colors and typography**
+
+Applies the [Farn design system's](https://farn.jbpt.de) color palette and typefaces to any HTML/CSS artifact, slide, prototype, or visual output. Covers both light and dark mode accents, the full type scale (Fraunces · Instrument Sans · JetBrains Mono), and a ready-to-paste CSS snippet.
+
+**Triggers:** "apply farn styling", "use farn colors", "style this with the farn design system"
+
+→ [`skills/farn-painter/`](skills/farn-painter/)
+
+```bash
+npx skills add https://github.com/jabopiti/claude-skills/raw/main/skills/farn-painter.skill
+```
 
 ---
 
