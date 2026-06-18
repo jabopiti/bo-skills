@@ -1,9 +1,9 @@
 ---
-name: tracker
+name: issue-tracker
 description: Use when creating a new GitHub issue, picking up an existing issue to implement, closing or updating an issue, or when you discover deferred work, a bug, or a gap that needs documenting. Invoke before any issue-related action — do not create, update, or close issues without reading this skill first. Also triggers on phrases like "log this", "track this", "file an issue for", "pick up issue #N", "what issues are open", or "document this for later".
 ---
 
-# Tracker
+# Issue Tracker
 
 Manages the full lifecycle of GitHub issues and the project kanban board. Works in any repo set up with the standard Bo. issue workflow.
 

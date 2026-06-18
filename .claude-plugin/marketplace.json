@@ -1,14 +1,14 @@
 {
-  "name": "jabopiti-skills",
+  "name": "bo-skills",
   "owner": {
     "name": "Jacob Lueg Tiedemann",
     "url": "https://jbpt.de"
   },
   "plugins": [
     {
-      "name": "skills",
+      "name": "bo-skills",
       "source": "./",
-      "description": "Shareable Claude skills — tracker, thin-slicer, and more",
+      "description": "Shareable Claude skills — issue-tracker, thin-slicer, and more",
       "version": "1.0.0"
     }
   ]

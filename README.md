@@ -1,4 +1,4 @@
-# claude-skills
+# bo-skills
 
 A collection of shareable [Claude Code](https://claude.ai/code) skills by [Jacob Lueg Tiedemann](https://jbpt.de).
 
@@ -8,7 +8,7 @@ Skills extend Claude Code with domain-specific workflows and knowledge — loade
 
 ## Skills
 
-### tracker
+### issue-tracker
 **GitHub issue lifecycle manager**
 
 Handles the full workflow for GitHub Issues backed by a project kanban board: filing new issues, picking them up, tracking status through Backlog → Ready → In progress → In review → Done, and closing them. Reads board configuration from a small JSON file in the repo — no hardcoded IDs, works with any repo you set it up in.
@@ -17,11 +17,7 @@ Includes a first-run **setup mode** that creates the GitHub Project board, adds 
 
 **Triggers:** "file an issue for this", "pick up issue #N", "log this for later", "what issues are open", "track this", "document this gap"
 
-→ [`skills/tracker/`](skills/tracker/)
-
-```bash
-npx skills add https://github.com/jabopiti/claude-skills/raw/main/skills/tracker.skill
-```
+→ [`skills/issue-tracker/`](skills/issue-tracker/)
 
 ---
 
@@ -34,10 +30,6 @@ Breaks any product specification — PRD, epic, feature brief, RFC — into thin
 
 → [`skills/thin-slicer/`](skills/thin-slicer/)
 
-```bash
-npx skills add https://github.com/jabopiti/claude-skills/raw/main/skills/thin-slicer.skill
-```
-
 ---
 
 ### farn-painter
@@ -49,62 +41,37 @@ Applies the [Farn design system's](https://farn.jbpt.de) color palette and typef
 
 → [`skills/farn-painter/`](skills/farn-painter/)
 
-```bash
-npx skills add https://github.com/jabopiti/claude-skills/raw/main/skills/farn-painter.skill
+---
+
+## Installation via Claude Code marketplace
+
+This repo is registered as a Claude Code marketplace. Add it once and all skills auto-update.
+
+In any Claude Code session, ask Claude to add the marketplace:
+
 ```
+Add the marketplace jabopiti/bo-skills
+```
+
+Then install the plugin:
+
+```
+Install plugin bo-skills from bo-skills marketplace
+```
+
+After restarting Claude Code, skills appear as `bo-skills:issue-tracker`, `bo-skills:thin-slicer`, etc.
 
 ---
 
-## Installation
+## Setting up issue-tracker in a new repo
 
-Skills are packaged as a Claude Code plugin under the `skills` namespace (`skills@jabopiti`).
+The issue-tracker skill detects whether a repo is configured and walks you through setup if not. In any repo without `.claude/issue-config.json`:
 
-**1. Clone this repo**
+1. Invoke the `issue-tracker` skill (or ask Claude to "set up issue management for this repo")
+2. It reads the setup reference and runs the full setup: creates the GitHub Project board, adds Status / Complexity / Risk fields with standard options, copies the issue template, and writes `.claude/issue-config.json`
+3. Done — all future `issue-tracker` invocations in that repo read from the config file directly
 
-```bash
-git clone https://github.com/jabopiti/claude-skills ~/path/to/claude-skills
-```
-
-**2. Create the plugin cache entry**
-
-```bash
-mkdir -p ~/.claude/plugins/cache/jabopiti/skills
-ln -sf ~/path/to/claude-skills ~/.claude/plugins/cache/jabopiti/skills/1.0.0
-```
-
-**3. Register the plugin**
-
-Add this entry to `~/.claude/plugins/installed_plugins.json` inside the `"plugins"` object:
-
-```json
-"skills@jabopiti": [
-  {
-    "scope": "user",
-    "installPath": "/absolute/path/to/.claude/plugins/cache/jabopiti/skills/1.0.0",
-    "version": "1.0.0",
-    "installedAt": "2026-01-01T00:00:00.000Z",
-    "lastUpdated": "2026-01-01T00:00:00.000Z"
-  }
-]
-```
-
-**4. Restart Claude Code**
-
-Skills will appear in the available skills list as `skills:tracker`, `skills:thin-slicer`, etc.
-
-> **On a new machine** — re-run steps 1–3. The symlink is local-only; everything else is in git.
-
----
-
-## Setting up tracker in a new repo
-
-The tracker skill detects whether a repo is configured and walks you through setup if not. In any repo without `.claude/issue-config.json`:
-
-1. Invoke the `tracker` skill (or ask Claude to "set up issue management for this repo")
-2. It reads [`skills/tracker/references/setup.md`](skills/tracker/references/setup.md) and runs the full setup: creates the GitHub Project board, adds Status / Complexity / Risk fields with standard options, copies the issue template, and writes `.claude/issue-config.json`
-3. Done — all future `tracker` invocations in that repo read from the config file directly
-
-The issue template is at [`skills/tracker/assets/task-template.yml`](skills/tracker/assets/task-template.yml) and is copied to `.github/ISSUE_TEMPLATE/` during setup.
+The issue template is at [`skills/issue-tracker/assets/task-template.yml`](skills/issue-tracker/assets/task-template.yml) and is copied to `.github/ISSUE_TEMPLATE/` during setup.
 
 ---
 
