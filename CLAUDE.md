@@ -1,11 +1,10 @@
 # bo-skills
 
 ## Packaging
-After editing any skill source files, regenerate the `.skill` ZIP artifact:
-```bash
-cd skills && zip -r <skill-name>.skill <skill-name>/
-```
-Then bump version in both `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
+The `.skill` ZIP is auto-repackaged by `.claude/hooks/repackage-skill.sh` whenever a skill
+source file is edited — no manual `zip` step needed.
+
+Before pushing, bump version in both `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
 Commit and push — the plugin auto-updates via `gitCommitSha` tracking on next session start.
 
 ## GitHub Projects API
