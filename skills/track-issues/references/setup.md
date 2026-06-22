@@ -125,10 +125,18 @@ EOF
 
 > **GitHub's GraphQL API does not expose view configuration** — layout and view naming can only be changed through the web UI.
 
-1. Open the project on github.com (the URL is printed after Step 1, or find it under your profile → Projects).
-2. Click the **`…`** next to the default "View 1" tab.
-3. Rename it to **Board**.
-4. Switch the layout to **Board**.
+**Before continuing, use `AskUserQuestion` to prompt the user:**
+
+> Title: "Switch to Board layout"
+>
+> "The project is created, but the view layout must be set manually. Please open the project on github.com (link printed above), then:
+> 1. Click the **`…`** next to the default "View 1" tab.
+> 2. Rename it to **Board**.
+> 3. Switch the layout to **Board**.
+>
+> Done?"
+
+Wait for the user to confirm before proceeding to Step 6.
 
 ---
 
@@ -136,18 +144,26 @@ EOF
 
 > **GitHub's GraphQL API does not expose workflow configuration** — enabling and editing workflows can only be done through the web UI.
 
-Open the project on github.com → click **Workflows** in the top-right menu. Enable and configure each workflow below. For each one: click it in the sidebar, toggle it **On**, click **Edit**, set the value shown, then **Save**.
+**Use `AskUserQuestion` to prompt the user:**
 
-| Workflow | Configure |
-|----------|-----------|
-| Auto-add sub-issues to project | *(no configuration needed — enable as-is)* |
-| Auto-add to project | Filter: `is:issue is:open` scoped to **this repo** |
-| Auto-close issue | Trigger: Status = **Done** → action: Close the issue |
-| Item added to project | Set Status: **Backlog** |
-| Item closed | Set Status: **Done** |
-| Item reopened | Set Status: **Ready** |
-| Pull request linked to issue | Set Status: **In review** |
-| Pull request merged | Set Status: **Done** |
+> Title: "Enable project workflows"
+>
+> "Now set up the automations. In the project on github.com, click **Workflows** in the top-right menu. For each workflow below: click it, toggle **On**, click **Edit**, set the value shown, then **Save**.
+>
+> | Workflow | Configure |
+> |----------|-----------|
+> | Auto-add sub-issues to project | *(no config needed — enable as-is)* |
+> | Auto-add to project | Filter: `is:issue is:open` scoped to this repo |
+> | Auto-close issue | Trigger: Status = **Done** → Close the issue |
+> | Item added to project | Set Status: **Backlog** |
+> | Item closed | Set Status: **Done** |
+> | Item reopened | Set Status: **Ready** |
+> | Pull request linked to issue | Set Status: **In review** |
+> | Pull request merged | Set Status: **Done** |
+>
+> Done?"
+
+Wait for the user to confirm before proceeding to Step 7.
 
 These workflows automate the full status lifecycle — new issues land in Backlog, get moved to In review when a PR is linked, and reach Done (with the issue auto-closed) when the PR merges. Reopening an issue sends it back to Ready rather than Backlog.
 
